@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texas Hold'em Poker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Texas Hold'em Poker</h1>
+            <div class="game-info">
+                <div class="pot-display">
+                    <span class="label">Pot:</span>
+                    <span class="value" id="potAmount">$0</span>
+                </div>
+                <div class="round-display">
+                    <span class="label">Round:</span>
+                    <span class="value" id="roundStage">Pre-Flop</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="game-board">
+            <!-- Community Cards -->
+            <section class="community-cards">
+                <h2>Community Cards</h2>
+                <div class="cards-container" id="communityCards">
+                    <div class="card-slot empty"></div>
+                    <div class="card-slot empty"></div>
+                    <div class="card-slot empty"></div>
+                    <div class="card-slot empty"></div>
+                    <div class="card-slot empty"></div>
+                </div>
+            </section>
+
+            <!-- Players Table -->
+            <section class="players-table">
+                <div class="players-grid" id="playersContainer">
+                    <!-- Players will be dynamically added here -->
+                </div>
+            </section>
+
+            <!-- Game Controls -->
+            <section class="game-controls">
+                <div class="player-actions" id="playerActions">
+                    <button class="btn btn-fold" id="foldBtn">Fold</button>
+                    <button class="btn btn-check" id="checkBtn">Check</button>
+                    <button class="btn btn-call" id="callBtn">Call</button>
+                    <button class="btn btn-raise" id="raiseBtn">Raise</button>
+                    <button class="btn btn-all-in" id="allInBtn">All In</button>
+                </div>
+
+                <!-- Bet Amount Input -->
+                <div class="bet-control">
+                    <label for="betAmount">Bet Amount:</label>
+                    <input type="number" id="betAmount" min="0" placeholder="Enter amount">
+                    <button class="btn btn-submit" id="submitBetBtn">Submit Bet</button>
+                </div>
+
+                <!-- Game Start Button -->
+                <div class="game-start">
+                    <button class="btn btn-primary" id="startGameBtn">Start New Game</button>
+                    <button class="btn btn-secondary" id="nextRoundBtn" style="display: none;">Next Round</button>
+                </div>
+            </section>
+
+            <!-- Game Messages -->
+            <section class="game-messages">
+                <div id="messageBox" class="message-box">
+                    <p>Welcome to Texas Hold'em! Click "Start New Game" to begin.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Texas Hold'em Poker Game</p>
+        </footer>
+    </div>
+
+    <script src="deck.js"></script>
+    <script src="player.js"></script>
+    <script src="game.js"></script>
+    <script src="ui.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
