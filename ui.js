@@ -84,28 +84,40 @@ class UI {
                 this.createCardElement(card, true, true).outerHTML
             ).join('');
 
-            const statusClass = player.isAllIn ? 'all-in' : '';
             const statusText = player.getStatus();
+            const positionBadge = player.position ? `<div class="player-position">${this.getPositionLabel(player.position)}</div>` : '';
 
             playerElement.innerHTML = `
                 <div class="player-name">${player.name}</div>
+                ${positionBadge}
                 <div class="player-info">
                     <div class="player-info-item">
-                        <span class="player-info-label">Chips:</span>
+                        <span class="player-info-label">Chips</span>
                         <span class="player-info-value">$${player.chips}</span>
                     </div>
                     <div class="player-info-item">
-                        <span class="player-info-label">Bet:</span>
-                        <span class="player-info-value">$${player.currentBet + player.totalBet}</span>
+                        <span class="player-info-label">Bet</span>
+                        <span class="player-info-value">$${player.totalBet}</span>
                     </div>
                 </div>
-                ${player.position ? `<div class="player-info-item"><strong>${player.position.toUpperCase()}</strong></div>` : ''}
                 <div class="player-hand">${holeCardsHTML}</div>
                 <div class="player-status">${statusText}</div>
             `;
 
             this.playersContainer.appendChild(playerElement);
         });
+    }
+
+    /**
+     * Get human-readable position label
+     */
+    getPositionLabel(position) {
+        const labels = {
+            'dealer': '🎰 Dealer',
+            'small_blind': 'SB',
+            'big_blind': 'BB'
+        };
+        return labels[position] || position;
     }
 
     /**
@@ -116,11 +128,13 @@ class UI {
         cardDiv.className = `card ${card.suit === '♥' || card.suit === '♦' ? 'heart-diamond' : 'spade-club'}`;
         
         if (showBack) {
-            cardDiv.style.backgroundImage = 'linear-gradient(45deg, #1e3c72, #2a5298)';
+            cardDiv.style.background = 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)';
+            cardDiv.style.border = '2px solid #d4af37';
             cardDiv.style.cursor = 'pointer';
             cardDiv.textContent = '🂠';
             cardDiv.style.fontSize = '2em';
-            cardDiv.style.color = 'gold';
+            cardDiv.style.color = '#d4af37';
+            cardDiv.style.textShadow = '0 0 8px rgba(212, 175, 55, 0.6)';
         } else {
             const rankDisplay = card.rank;
             const suitDisplay = card.suit;
@@ -149,11 +163,11 @@ class UI {
      */
     updateRoundStage(stage) {
         const stageNames = {
-            'pre-flop': 'Pre-Flop',
-            'flop': 'Flop',
-            'turn': 'Turn',
-            'river': 'River',
-            'showdown': 'Showdown'
+            'pre-flop': '🎴 Pre-Flop',
+            'flop': '🎴 Flop',
+            'turn': '🎴 Turn',
+            'river': '🎴 River',
+            'showdown': '🏆 Showdown'
         };
         this.roundStage.textContent = stageNames[stage] || stage;
     }
@@ -207,7 +221,7 @@ class UI {
      * Reset UI for new game
      */
     resetGame() {
-        this.displayMessage('Game started!', 'success');
+        this.displayMessage('💰 Welcome to the Casino! Game starting...', 'success');
         this.renderCommunityCards([]);
         this.betAmountInput.value = '';
         this.setActionButtonsEnabled(false);
@@ -220,10 +234,10 @@ class UI {
      */
     showGameOver(winners) {
         let winnerNames = winners.map(w => w.name).join(', ');
-        this.displayMessage(`Game Over! Winner(s): ${winnerNames}!`, 'success');
+        this.displayMessage(`🎉 Game Over! Winner(s): ${winnerNames}!`, 'success');
         this.setActionButtonsEnabled(false);
         this.startGameBtn.style.display = 'inline-block';
-        this.startGameBtn.textContent = 'Play Again';
+        this.startGameBtn.textContent = '🎰 Play Again';
     }
 
     /**
@@ -232,7 +246,7 @@ class UI {
     showShowdownResults(results) {
         const winnerNames = results.winners.map(w => w.name).join(' & ');
         const pot = results.pot || 0;
-        let message = `${winnerNames} wins $${pot}!`;
+        let message = `🏆 ${winnerNames} wins $${pot}!`;
         
         if (results.bestHand) {
             message += ` (${results.bestHand.type})`;
