@@ -81,7 +81,7 @@ class UI {
 
             const holeCards = player.getHoleCards();
             const holeCardsHTML = holeCards.map(card => 
-                this.createCardElement(card, true, true).outerHTML
+                this.createCardElement(card, true, false).outerHTML
             ).join('');
 
             const statusText = player.getStatus();
