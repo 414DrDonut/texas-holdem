@@ -3,21 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Texas Hold'em Poker</title>
+    <title>Professional Texas Hold'em Poker</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Texas Hold'em Poker</h1>
+            <div class="header-content">
+                <h1>🎰 PROFESSIONAL TEXAS HOLD'EM 🎰</h1>
+                <p class="subtitle">Premium Poker Experience</p>
+            </div>
             <div class="game-info">
-                <div class="pot-display">
-                    <span class="label">Pot:</span>
-                    <span class="value" id="potAmount">$0</span>
+                <div class="info-group">
+                    <div class="pot-display">
+                        <span class="label">POT:</span>
+                        <span class="value" id="potAmount">$0</span>
+                    </div>
+                    <div class="round-display">
+                        <span class="label">ROUND:</span>
+                        <span class="value" id="roundCounter">Round 1</span>
+                    </div>
                 </div>
-                <div class="round-display">
-                    <span class="label">Round:</span>
-                    <span class="value" id="roundStage">Pre-Flop</span>
+                <div class="info-group">
+                    <div class="stage-display">
+                        <span class="label">STAGE:</span>
+                        <span class="value" id="roundStage">Pre-Flop</span>
+                    </div>
+                    <div class="timer-display">
+                        <span class="label">TIMER:</span>
+                        <span class="value" id="timerDisplay">--</span>
+                    </div>
                 </div>
             </div>
         </header>
@@ -25,7 +40,7 @@
         <main class="game-board">
             <!-- Community Cards -->
             <section class="community-cards">
-                <h2>Community Cards</h2>
+                <h2>COMMUNITY CARDS</h2>
                 <div class="cards-container" id="communityCards">
                     <div class="card-slot empty"></div>
                     <div class="card-slot empty"></div>
@@ -45,37 +60,47 @@
             <!-- Game Controls -->
             <section class="game-controls">
                 <div class="player-actions" id="playerActions">
-                    <button class="btn btn-fold" id="foldBtn">Fold</button>
-                    <button class="btn btn-check" id="checkBtn">Check</button>
-                    <button class="btn btn-call" id="callBtn">Call</button>
-                    <button class="btn btn-raise" id="raiseBtn">Raise</button>
-                    <button class="btn btn-all-in" id="allInBtn">All In</button>
+                    <button class="btn btn-fold" id="foldBtn">FOLD</button>
+                    <button class="btn btn-check" id="checkBtn">CHECK</button>
+                    <button class="btn btn-call" id="callBtn">CALL</button>
+                    <button class="btn btn-raise" id="raiseBtn">RAISE</button>
+                    <button class="btn btn-all-in" id="allInBtn">ALL IN</button>
                 </div>
 
                 <!-- Bet Amount Input -->
                 <div class="bet-control">
                     <label for="betAmount">Bet Amount:</label>
                     <input type="number" id="betAmount" min="0" placeholder="Enter amount">
-                    <button class="btn btn-submit" id="submitBetBtn">Submit Bet</button>
+                    <button class="btn btn-submit" id="submitBetBtn">SUBMIT</button>
                 </div>
 
                 <!-- Game Start Button -->
                 <div class="game-start">
-                    <button class="btn btn-primary" id="startGameBtn">Start New Game</button>
-                    <button class="btn btn-secondary" id="nextRoundBtn" style="display: none;">Next Round</button>
+                    <button class="btn btn-primary" id="startGameBtn">START NEW GAME</button>
+                    <button class="btn btn-secondary" id="nextRoundBtn" style="display: none;">NEXT ROUND</button>
                 </div>
             </section>
 
             <!-- Game Messages -->
             <section class="game-messages">
                 <div id="messageBox" class="message-box">
-                    <p>Welcome to Texas Hold'em! Click "Start New Game" to begin.</p>
+                    <p>Welcome to Premium Texas Hold'em! Click "START NEW GAME" to begin.</p>
+                </div>
+            </section>
+
+            <!-- Statistics Panel -->
+            <section class="stats-section">
+                <div id="statsPanel" class="stats-panel">
+                    <div class="stat-item">
+                        <span class="stat-label">Hands Played:</span>
+                        <span class="stat-value">0</span>
+                    </div>
                 </div>
             </section>
         </main>
 
         <footer>
-            <p>&copy; 2025 Texas Hold'em Poker Game</p>
+            <p>🎰 Professional Texas Hold'em Poker Game | Premium Edition</p>
         </footer>
     </div>
 
